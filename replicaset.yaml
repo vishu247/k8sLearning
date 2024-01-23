@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: myapp-replicaset
+  labels:
+    app: myapp
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  replicas: 3
+  template:
+    metadata:
+      name: database
+      labels:
+        app: mongo
+        tier: database
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+
